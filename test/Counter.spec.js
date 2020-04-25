@@ -29,18 +29,18 @@ describe("Counter", () => {
   });
 
   it("another way: decrements the count when the button is clicked", () => {
-    wrapper.setData({count: 5})
+    wrapper.setData({ count: 5 });
     wrapper.find(".decrement").trigger("click");
     expect(wrapper.vm.count).toBe(4);
   });
 
-  it('never goes below 0', () =>{
+  it("never goes below 0", () => {
     expect(wrapper.vm.count).toBe(0);
     wrapper.find(".decrement").trigger("click");
     expect(wrapper.vm.count).toBe(0);
   });
 
-  it.only('decrement button visible when count is greater than 0', () =>{
+  it("decrement button visible when count is greater than 0", () => {
     expect(wrapper.vm.count).toBe(0);
     expect(wrapper.find(".decrement").hasStyle("display", "none")).toBe(true);
     wrapper.find(".increment").trigger("click");
