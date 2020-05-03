@@ -6,17 +6,18 @@
   "scripts": {
     "test": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/*.spec.js",
     "watch": "mocha-webpack --webpack-config webpack.config.js --watch --require test/setup.js test/*.spec.js"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^0.19.2",
     "expect": "^25.4.0",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
     "mocha": "^7.1.1",
     "mocha-webpack": "^2.0.0-beta.0",
+    "moxios": "^0.4.0",
     "preload-webpack-plugin": "^3.0.0-beta.4",
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.6.11",
