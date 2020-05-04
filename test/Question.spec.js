@@ -42,7 +42,7 @@ describe("Question", () => {
     expect(wrapper.contains("#edit")).toBe(false);
   });
 
-  it.only("updates the question after being edited", (done) => {
+  it("updates the question after being edited", (done) => {
     click("#edit");
 
     type("Changed title", "input[name=title]");
