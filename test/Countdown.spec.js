@@ -26,49 +26,44 @@ describe("Countdown", () => {
     see("10 Seconds");
   });
 
-  it("reduces the countdown every second", (done) => {
+  it("reduces the countdown every second", async () => {
     see("10 Seconds");
     clock.tick(1000);
-    assertOnNextTick(() => {
-      see("9 Seconds");
-    }, done);
+    await wrapper.vm.$nextTick();
+    see("9 Seconds");
   });
 
-  it("shows an expired message when the countdown has expired", (done) => {
+  it("shows an expired message when the countdown has expired", async () => {
     clock.tick(10000);
-    assertOnNextTick(() => {
-      see("Now Expired");
-    }, done);
+    await wrapper.vm.$nextTick();
+    see("Now Expired");
   });
 
-  it("shows a custom expired message when the countdown has completed", (done) => {
+  it("shows a custom expired message when the countdown has completed", async () => {
     wrapper.setProps({
       expiredText: "Contest is over.",
     });
     clock.tick(10000);
-    assertOnNextTick(() => {
-      see("Contest is over.");
-    }, done);
+    await wrapper.vm.$nextTick();
+    see("Contest is over.");
   });
 
   // <Countdown @finished="method">
   if (
     ("broadcasts when the countdown is finished",
-    (done) => {
+    async () => {
       clock.tick(10000);
-      assertOnNextTick(() => {
-        clock.tick(5000);
-        expect(wrapper.emitted().finished).toBeTruthy();
-      }, done);
+      await wrapper.vm.$nextTick();
+      clock.tick(5000);
+      expect(wrapper.emitted().finished).toBeTruthy();
     })
   );
 
-  it("clears the internal once completed", (done) => {
+  it("clears the internal once completed", async () => {
     clock.tick(10000);
     expect(wrapper.vm.now.getSeconds()).toBe(10);
-    assertOnNextTick(() => {
-      expect(wrapper.vm.now.getSeconds()).toBe(10);
-    }, done);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.now.getSeconds()).toBe(10);
   });
 
   // helper function
